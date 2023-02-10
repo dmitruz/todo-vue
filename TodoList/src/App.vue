@@ -18,7 +18,7 @@
           <td>Learn Vue.js</td>
           <td>{{ task.name }}</td>
           <td>{{ task.status }}</td>
-          <div class="text-center">
+          <div class="text-center" @click="editedTask(index)">
             <span class="fa fa-pen"></span>
           </div>
 
@@ -36,6 +36,7 @@
 <script>
 data(){
  return {
+ editTask: 'nul'
  task: '',
    tasks: [
 
@@ -47,6 +48,10 @@ data(){
       name: 'Learn React.js',
       status: 'in-progress'
     },
+    } else {
+      this.tasks[this.editedTask].name = this.task;
+      this.editedTask = null;
+    }
    ]
  }
 }
@@ -54,7 +59,7 @@ data(){
 methods: {
   submitTask() {
     if (this.task.length === 0) return;
-
+    if(this.editedTask === null) {
     this.tasks.push({
     name: this.task,
     status: 'to-do'
@@ -66,7 +71,12 @@ methods: {
 
   deleteTask(index) {
     this.tasks.splice(index, 1);
-    }
+    },
+
+  editedTask(index) {
+    this.task = this.tasks[index].name;
+    this.editTask = index;
+  }
   }
 }
 </script>
