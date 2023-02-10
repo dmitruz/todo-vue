@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <h2 class="text-center mt-5">My Todo</h2>
-    <input type="text" placeholder="Enter text" class="form-control" />
-    <button class="btn btn-warning rounded-0">Submit</button>
+    <input v-model="task" type="text" placeholder="Enter text" class="form-control" />
+    <button @click="submitTask" class="btn btn-warning rounded-0">Submit</button>
 
     <table class="table table-bordered mt-5">
       <thead>
@@ -36,6 +36,7 @@
 <script>
 data(){
  return {
+ task: '',
    tasks: [
 
  {
@@ -48,6 +49,18 @@ data(){
     },
    ]
  }
+}
+
+methods: {
+  submitTask() {
+    if (this.task.length === 0) return;
+
+    this.tasks.push({
+    name: this.task,
+    status: 'to-do'
+    })
+    }
+  }
 }
 </script>
 
