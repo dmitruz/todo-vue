@@ -73,9 +73,15 @@ methods: {
     this.tasks.splice(index, 1);
     },
 
-  editedTask(index) {
+  editTask(index) {
     this.task = this.tasks[index].name;
-    this.editTask = index;
+    this.editedTask = index;
+  },
+
+  changeStatus(index) {
+    let newIndex = this.availableStatuses.indexOf(this.tasks[index].task
+    if(++newIndex > 2) newIndex = 0;
+    this,tasks[index].status = this.availableStatuses[newIndex]
   }
   }
 }
