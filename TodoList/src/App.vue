@@ -23,7 +23,7 @@
           </div>
 
           <td>
-            <div class="text-center">
+            <div class="text-center" @click="deleteTask(index)">
               <span class="fa fa-pen"></span>
             </div>
           </td>
@@ -58,7 +58,14 @@ methods: {
     this.tasks.push({
     name: this.task,
     status: 'to-do'
-    })
+    });
+
+    this.task = '';
+    }
+
+
+  deleteTask(index) {
+    this.tasks.splice(index, 1);
     }
   }
 }
